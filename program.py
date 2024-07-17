@@ -1,4 +1,4 @@
-import discord, read_json
+import discord, read_json, api_data
 
 
 class Client(discord.Client):
@@ -6,7 +6,8 @@ class Client(discord.Client):
         print(f'Logged as: {self.user}')
 
     async def on_message(self, message):
-        print(f'Message from {message.author}: {message.content}')
+        if message.content.startswith('$json'):
+            await message.channel.send(api_data.get_request_data())
 
 
 intents = discord.Intents.all()

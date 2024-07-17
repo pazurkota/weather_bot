@@ -8,7 +8,7 @@ def read_json():
 
 
 def get_api_key():
-    return read_json()['api']
+    return read_json()['api_key']
 
 
 def get_token():
