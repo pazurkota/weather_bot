@@ -1,4 +1,4 @@
-import discord
+import discord, read_json
 
 
 class Client(discord.Client):
@@ -12,4 +12,4 @@ class Client(discord.Client):
 intents = discord.Intents.all()
 
 client = Client(intents=intents)
-client.run('token')
+client.run(read_json.get_token())
