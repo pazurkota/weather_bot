@@ -14,6 +14,10 @@ git clone https://github.com/pazurkota/weather_bot.git
 ---
 
 ### Running bot:
+Prerequisites:
+- [Discord Bot Token](https://discord.com/developers/applications) with all intents
+- [OpenWeather API](https://openweathermap.org/api) key
+
 To run this bot: 
 1. Make sure you are running `Python 3.8` or newer
 2. You need both `requests` and `discord` packages installed:
@@ -32,3 +36,10 @@ python -m pip install -U discord.py
 ```
 4. Open project with PyCharm or any other IDE
 5. Run the project
+
+---
+
+### Commands:
+The bot prefix is `$`
+- `weather <city>` - Get current weather for specified city
+- `aqi <city>` - Get current air quality for specified city
