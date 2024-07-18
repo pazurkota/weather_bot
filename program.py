@@ -1,18 +1,28 @@
 import discord, read_json, api_data
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
 
 
-class Client(discord.Client):
-    async def on_ready(self):
-        print(f'Logged as: {self.user}')
-
-    async def on_message(self, message):
-        if message.content.startswith('$json'):
-            city = api_data.get_geolocation('Berlin')
-            await message.channel.send(api_data.get_weather_data(city[0], city[1]))
-            await message.channel.send(api_data.get_aqi_data(city[0], city[1]))
+@bot.event
+async def on_ready():
+    print(f'Successfully logged in as {bot.user}')
 
 
-intents = discord.Intents.all()
+@bot.command()
+async def weather(ctx, arg):
+    city = api_data.get_geolocation(arg)
+    data = api_data.get_weather_data(city[0], city[1])
+    await ctx.send(data)
 
-client = Client(intents=intents)
-client.run(read_json.get_token())
+
+@bot.command()
+async def aqi(ctx, arg):
+    city = api_data.get_geolocation(arg)
+    data = api_data.get_aqi_data(city[0], city[1])
+    await ctx.send(data)
+
+bot.run(read_json.get_token())
