@@ -3,6 +3,8 @@
 
 ![](https://img.shields.io/github/license/pazurkota/weather_bot?style=for-the-badge)
 
+![](readme_image.png)
+
 ---
 
 ### Cloning repo:
@@ -41,5 +43,22 @@ python -m pip install -U discord.py
 
 ### Commands:
 The bot prefix is `$`
-- `weather <city>` - Get current weather for specified city
-- `aqi <city>` - Get current air quality for specified city
+- `$weather <city>` - Get current weather for specified city
+- `$aqi <city>` - Get current air quality for specified city
+
+If your location have more than one word, type name in quotes, e.g. `$weather "New York"`
+
+---
+
+### Project structure:
+
+This bot is simple, but some files are in separate folders for better organization:
+- `data` - contains all methods to get data neither from API or `data.json` file
+- `parse` - contains all methods to parse data from API and return it as Discord Embed
+
+---
+
+### Appendix:
+This was my first project with Python, so any feedback is appreciated! If you have any questions, feel free to ask me on Discord `@pazurkota`
+
+Also, any suggestions for new features or contributions are welcome!
