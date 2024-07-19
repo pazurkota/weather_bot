@@ -1,4 +1,4 @@
-import discord, read_json, api_data
+import discord, read_json, api_data, parse_data
 from discord.ext import commands
 
 intents = discord.Intents.default()
@@ -15,14 +15,12 @@ async def on_ready():
 @bot.command()
 async def weather(ctx, arg):
     city = api_data.get_geolocation(arg)
-    data = api_data.get_weather_data(city[0], city[1])
-    await ctx.send(data)
+    await ctx.send(embed=parse_data.parse_weather_data(city[0], city[1]))
 
 
 @bot.command()
 async def aqi(ctx, arg):
     city = api_data.get_geolocation(arg)
-    data = api_data.get_aqi_data(city[0], city[1])
-    await ctx.send(data)
+    await ctx.send(parse_data.parse_weather_data(city[0], city[1]))
 
 bot.run(read_json.get_token())
