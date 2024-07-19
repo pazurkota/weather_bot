@@ -1,5 +1,5 @@
 import discord
-from parse import parse_weather_data
+from parse import parse_weather_data, parse_aqi_data
 from data import api_data, read_json
 from discord.ext import commands
 
@@ -22,6 +22,7 @@ async def weather(ctx, arg):
 
 @bot.command()
 async def aqi(ctx, arg):
-    await ctx.send('AQI data is not available at this time.')
+    city = api_data.get_geolocation(arg)
+    await ctx.send(embed=parse_aqi_data.parse_aqi_data(city[0], city[1], ctx))
 
 bot.run(read_json.get_token())
