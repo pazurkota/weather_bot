@@ -1,8 +1,8 @@
-import discord, api_data
+import discord, api_data, datetime
 from parse_units import kelvin_to_celsius, kelvin_to_fahrenheit, ms_to_kph, ms_to_mph
 
 
-def parse_weather_data(lat, lon):
+def parse_weather_data(lat, lon, ctx):
     data = api_data.get_weather_data(lat, lon)
 
     description = f"""
@@ -25,6 +25,9 @@ Cloudiness: {show_cloudiness(data)}%```
         title=f"Weather for {data['name']}, {data['sys']['country']}:",
         description=description
     )
+
+    embed.set_footer(text=f"Requested by {ctx.author} • API provided by OpenWeatherMap")
+    embed.timestamp = datetime.datetime.utcnow()
     return embed
 
 

@@ -15,12 +15,11 @@ async def on_ready():
 @bot.command()
 async def weather(ctx, arg):
     city = api_data.get_geolocation(arg)
-    await ctx.send(embed=parse_data.parse_weather_data(city[0], city[1]))
+    await ctx.send(embed=parse_weather_data.parse_weather_data(city[0], city[1], ctx))
 
 
 @bot.command()
 async def aqi(ctx, arg):
-    city = api_data.get_geolocation(arg)
-    await ctx.send(parse_data.parse_weather_data(city[0], city[1]))
+    await ctx.send('AQI data is not available at this time.')
 
 bot.run(read_json.get_token())
