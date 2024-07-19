@@ -7,7 +7,7 @@ def parse_aqi_data(lat, lon, ctx):
 
     description = f"""
     ```
-Air Quality Index: {data['list'][0]['main']['aqi']}
+Air Quality Index: {data['list'][0]['main']['aqi']} ({show_aqi_index_desc(data['list'][0]['main']['aqi'])})
 
 Concentration of CO: {data['list'][0]['components']['co']}µg/m³
 Concentration of NO: {data['list'][0]['components']['no']}µg/m³
@@ -21,10 +21,25 @@ Concentration of NH₃: {data['list'][0]['components']['nh3']}µg/m³```
 
     embed = discord.Embed(
         colour=discord.Colour.green(),
-        title=f"Air Quality Index for location:",
+        title=f"Air Quality Index for requested location:",
         description=description
     )
 
     embed.set_footer(text=f"Requested by {ctx.author} • API provided by OpenWeatherMap")
     embed.timestamp = datetime.datetime.utcnow()
     return embed
+
+
+def show_aqi_index_desc(aqi_index):
+    if aqi_index == 1:
+        return "Good"
+    elif aqi_index == 2:
+        return "Fair"
+    elif aqi_index == 3:
+        return "Moderate"
+    elif aqi_index == 4:
+        return "Poor"
+    elif aqi_index == 5:
+        return "Very Poor"
+    else:
+        return "Unknown"
