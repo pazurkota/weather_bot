@@ -1,4 +1,5 @@
-import discord, read_json, api_data, parse_weather_data
+import discord, parse_weather_data
+from data import api_data, read_json
 from discord.ext import commands
 
 intents = discord.Intents.default()

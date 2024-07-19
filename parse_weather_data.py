@@ -1,4 +1,6 @@
-import discord, api_data, datetime
+import discord, datetime
+from data import api_data
+
 from parse_units import kelvin_to_celsius, kelvin_to_fahrenheit, ms_to_kph, ms_to_mph
 
 

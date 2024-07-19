@@ -1,4 +1,5 @@
-import requests as req, json, read_json
+import requests as req
+from data import read_json
 
 
 # https://openweathermap.org/api
