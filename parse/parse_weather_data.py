@@ -1,7 +1,6 @@
 import discord, datetime
 from data import api_data
-
-from parse_units import kelvin_to_celsius, kelvin_to_fahrenheit, ms_to_kph, ms_to_mph
+from parse import parse_units as p
 
 
 def parse_weather_data(lat, lon, ctx):
@@ -9,14 +8,14 @@ def parse_weather_data(lat, lon, ctx):
 
     description = f"""
     ```
-Current temperature: {kelvin_to_celsius(data['main']['temp'])}°C ({kelvin_to_fahrenheit(data['main']['temp'])}°F) 
-Temperature range: {kelvin_to_celsius(data['main']['temp_min'])}°C-{kelvin_to_celsius(data['main']['temp_max'])}°C ({kelvin_to_fahrenheit(data['main']['temp_min'])}°F-{kelvin_to_fahrenheit(data['main']['temp_max'])}°F)
+Current temperature: {p.kelvin_to_celsius(data['main']['temp'])}°C ({p.kelvin_to_fahrenheit(data['main']['temp'])}°F) 
+Temperature range: {p.kelvin_to_celsius(data['main']['temp_min'])}°C-{p.kelvin_to_celsius(data['main']['temp_max'])}°C ({p.kelvin_to_fahrenheit(data['main']['temp_min'])}°F-{p.kelvin_to_fahrenheit(data['main']['temp_max'])}°F)
 Air pressure: {data['main']['pressure']}hPa
 Humidity: {show_humidity(data)}%
 
-Wind speed: {show_wind_speed(data)}m/s ({ms_to_kph(show_wind_speed(data))}kph or {ms_to_mph(show_wind_speed(data))}mph)
+Wind speed: {show_wind_speed(data)}m/s ({p.ms_to_kph(show_wind_speed(data))}kph or {p.ms_to_mph(show_wind_speed(data))}mph)
 Wind direction: {data['wind']['deg']}°
-Wind gusts: {show_wind_gusts(data)}m/s ({ms_to_kph(show_wind_gusts(data))}kph or {ms_to_mph(show_wind_gusts(data))}mph)
+Wind gusts: {show_wind_gusts(data)}m/s ({p.ms_to_kph(show_wind_gusts(data))}kph or {p.ms_to_mph(show_wind_gusts(data))}mph)
 
 Rain volume for the last hour: {show_rain(data)}mm
 Cloudiness: {show_cloudiness(data)}%```

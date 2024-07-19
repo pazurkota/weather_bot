@@ -1,4 +1,5 @@
-import discord, parse_weather_data
+import discord
+from parse import parse_weather_data
 from data import api_data, read_json
 from discord.ext import commands
 
