@@ -22,7 +22,7 @@ Concentration of NH₃: {data['list'][0]['components']['nh3']}µg/m³```
 
     embed = discord.Embed(
         colour=discord.Colour.green(),
-        title=f"Air Quality Index {city[0]}, {city[1]}",
+        title=f"Air Quality Index for {city[0]}, {city[1]}",
         description=description
     )
 
