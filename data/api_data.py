@@ -23,3 +23,12 @@ def get_geolocation(location):
     longitude = response.json()[0]['lon']
 
     return [latitude, longitude]
+
+
+def get_city_name(lat, lon):
+    data = get_weather_data(lat, lon)
+
+    city_name = data['name']
+    country = data['sys']['country']
+
+    return [city_name, country]

@@ -4,6 +4,7 @@ from data import api_data
 
 def parse_aqi_data(lat, lon, ctx):
     data = api_data.get_aqi_data(lat, lon)
+    city = api_data.get_city_name(lat, lon)
 
     description = f"""
     ```
@@ -21,7 +22,7 @@ Concentration of NH₃: {data['list'][0]['components']['nh3']}µg/m³```
 
     embed = discord.Embed(
         colour=discord.Colour.green(),
-        title=f"Air Quality Index for requested location:",
+        title=f"Air Quality Index {city[0]}, {city[1]}",
         description=description
     )
 

@@ -5,6 +5,7 @@ from parse import parse_units as p
 
 def parse_weather_data(lat, lon, ctx):
     data = api_data.get_weather_data(lat, lon)
+    city = api_data.get_city_name(lat, lon)
 
     description = f"""
     ```
@@ -23,12 +24,12 @@ Cloudiness: {show_cloudiness(data)}%```
 
     embed = discord.Embed(
         colour=discord.Colour.green(),
-        title=f"Weather for {data['name']}, {data['sys']['country']}:",
+        title=f"Weather for {city[0]}, {city[1]}:",
         description=description
     )
 
     embed.set_footer(text=f"Requested by {ctx.author} • API provided by OpenWeatherMap")
-    embed.timestamp = datetime.datetime.utcnow()
+    embed.timestamp = datetime.datetime.now()
     return embed
 
 
